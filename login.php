@@ -130,7 +130,7 @@ include("connection.php");
 
 	</div> -->
   <div class="topnav" id="myTopnav">
-    <img src="images/logo.png" style="width: 180px; height: 100px; ">
+  <a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a style="" href="login.php" class="active">Login/SignUp</a>
   <a href="#contact">Contact</a>
   <a href="#services">Services</a>
@@ -213,6 +213,11 @@ if (isset($_POST["login"]))
     }
     
     $query->close();
+
+
+    if ($uname_db=="saif@saif.com") {
+      # code...
+    
   
     session_start();
 
@@ -223,7 +228,23 @@ if (isset($_POST["login"]))
     echo '</script>';
 
 
-      header("location:home.php");
+      header("location:admin_homes.php");
+
+    }
+    else{
+
+      session_start();
+
+    $_SESSION['loged_user']=$uname_db;
+
+    echo '<script language=javascript>';
+    echo 'alert("Sucessfuly loged in '.$_SESSION['loged_user'].' ")';
+    echo '</script>';
+
+
+      header("location:users_home.php");
+
+    }
 
   }
 

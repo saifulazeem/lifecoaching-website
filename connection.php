@@ -1,6 +1,6 @@
 <?php
 
-$con=mysqli_connect("localhost","root","","portfolio");
+$con=mysqli_connect("localhost","root","","lifecoach_db");
 
 if (mysqli_connect_error())
  {

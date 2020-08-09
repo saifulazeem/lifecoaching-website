@@ -115,7 +115,7 @@ include("connection.php");
 
 <body style="font-family:Verdana;">
 	<div class="topnav" id="myTopnav">
-    <img src="images/logo.png" style="width: 180px; height: 100px; ">
+  <a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a style="" href="registration.php" class="active">Login/SignUp</a>
   <a href="#contact">Contact</a>
   <a href="#services">Services</a>
@@ -138,7 +138,7 @@ function myFunction() {
 
 <center>
  <div class="Contazct"> 
-<form action="login.php" method="POST">
+<form action="registration.php" method="POST">
   <!-- <div  class="imgcontainer">
     <img src="images/logimg.png" alt="Avatar" class="avatar">
   </div> -->
@@ -176,3 +176,47 @@ function myFunction() {
 
 </body>
 </html>
+
+<?php
+
+if (isset($_POST["signup"]))
+ {
+ 	$ufname=mysqli_real_escape_string($con,$_POST["fname"]);
+	$uemail=mysqli_real_escape_string($con,$_POST["uname"]);
+	$upass=mysqli_real_escape_string($con,$_POST["psw"]);
+	$cupass=mysqli_real_escape_string($con,$_POST["cpsw"]);
+
+	$query=$con->prepare("SELECT * FROM user WHERE email=?");
+	$query->bind_param("s",$uemail);
+	$query->execute();
+	$result=$query->get_result();
+
+	if($result->num_rows===0)
+	{
+		if ($upass==$cupass)
+		 {
+			$query=$con->prepare("INSERT INTO user(fname,email,password)values(?,?,?)");
+			$query->bind_param("sss",$ufname,$uemail,$upass);
+			$query->execute();
+			$query->close();
+
+			echo "Sucessfully Registered Plaese USE Login Form TO Login";
+
+		}
+
+		else
+		{
+			echo "PASSSWORD Dont Match";
+		}
+	}
+	else
+	{
+		echo "User Already Exist";
+	}
+
+}
+
+
+
+  ?>
+

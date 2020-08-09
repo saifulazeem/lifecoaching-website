@@ -1,10 +1,30 @@
+<?php
+session_start();
+
+if (isset($_SESSION["loguser"]))
+ {
+  $val=$_SESSION["loguser"];
+}
+else
+{
+  header("location:sign.php");
+}
+if(isset($_GET["logout"]))
+{
+  session_destroy();
+  header("location:sign.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Videos</title>
+	<title>Home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  .topnav {
+	.topnav {
   overflow: hidden;
   background-color: #f1f1f1;
 }
@@ -51,7 +71,7 @@
 }
 .main {
   float: left;
-  width: 70%;
+  width: 60%;
   padding: 0 20px;
   overflow: hidden;
 }
@@ -84,12 +104,12 @@
 <body style="font-family:Verdana;">
 
 
-  <div class="topnav" id="myTopnav">
-  <a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
-  <a href="login.php">Login/SignUp</a>
+	<div class="topnav" id="myTopnav">
+	<a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
+  <a href="#login.php">Logout</a>
   <a href="#contact">Contact</a>
   <a href="#services">Services</a>
-  <a href="index.html" class="active">Home</a>
+  <a href="#index.html" class="active">Home</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -114,62 +134,13 @@ function myFunction() {
   <div class="menu">
     <div class="menuitem">Categories</div>
     <div class="menuitem">Topics</div>
-    <div class="menuitem"><a href="Videos.php" style="text-decoration: none;">Videos</a></div>
+    <div class="menuitem">Videos</div>
     <!-- <div class="menuitem">Gallery</div> -->
   </div>
 
   <div class="main">
-    <h2>VIDEOS</h2>
+    <h2>Controls</h2>
 
-    <?php
-    include("connection.php");
-
-     $query=$con->prepare("SELECT * FROM videos");
-
-      // $query->bind_param();
-      $query->execute();
-      $result=$query->get_result();
-
-      // $row=array();
-      // $video=array();
-
-       while($row=$result->fetch_assoc())
-   {
-       $id= $row['id'];
-       $pdate = $row['pdate'];
-       $auther = $row['auther'];
-       $title = $row['title'];
-       $video = $row['video'];
-
-       // echo "<a href='watch.php?id=$id'>$video</a><br>";
-     
-
-       
-
-
-       
-   
-
-
-
-
-
-      ?>
-      
-      <div style="width: 30%; border:; border-radius: 10%; background-color:#f1f1f1; float: left;">
-        <h3 style="padding-left: 8px;"><?php echo $title;  ?></h3>
- <a href='<?php echo "watch.php?id=$id" ?>'><img src="images/motivational_image.jpg" style="width: 90%; border-radius: 10%;" alt="My Videos"></a>
-
-</div>
-
- <?php
-
-  }
-    
-    $query->close();
-
-
- ?>
     
   </div>
 
@@ -183,8 +154,6 @@ function myFunction() {
   </div> -->
 </div>
 <br>
-
-
 
 <div style="background-color:#333;text-align:center;padding:10px;margin-top:7px;font-size:12px;"> <p style="color: #f1f1f1;">Copyright ©2020 All rights reserved | lifecoachs.com</p></div>
 
