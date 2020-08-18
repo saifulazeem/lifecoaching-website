@@ -132,7 +132,7 @@ include("connection.php");
   <div class="topnav" id="myTopnav">
   <a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a style="" href="login.php" class="active">Login/SignUp</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.php">Contact</a>
   <a href="#services">Services</a>
   <a href="index.html" >Home</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">

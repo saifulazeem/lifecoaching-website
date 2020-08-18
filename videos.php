@@ -87,7 +87,7 @@
   <div class="topnav" id="myTopnav">
   <a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a href="login.php">Login/SignUp</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.php">Contact</a>
   <a href="#services">Services</a>
   <a href="index.html" class="active">Home</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -112,7 +112,12 @@ function myFunction() {
 
 <div style="overflow:auto">
   <div class="menu">
-    <div class="menuitem">Categories</div>
+    <div class="menuitem"><form method="POST" action="search_results.php">
+      <input style="height: 30px; width: 70%;  " type="text" name="search_bar" placeholder="Search Topic Here">
+      <button  name="search_btn" style="height: 35px; cursor: pointer; ">GO</button>
+    </form>
+   
+  </div>
     <div class="menuitem">Topics</div>
     <div class="menuitem"><a href="Videos.php" style="text-decoration: none;">Videos</a></div>
     <!-- <div class="menuitem">Gallery</div> -->
@@ -158,7 +163,7 @@ function myFunction() {
       
       <div style="width: 30%; border:; border-radius: 10%; background-color:#f1f1f1; float: left;">
         <h3 style="padding-left: 8px;"><?php echo $title;  ?></h3>
- <a href='<?php echo "watch.php?id=$id" ?>'><img src="images/motivational_image.jpg" style="width: 90%; border-radius: 10%;" alt="My Videos"></a>
+ <a href='<?php echo "watch.php?id=$id && title=$title" ?>'><img src="images/motivational_image.jpg" style="width: 90%; border-radius: 10%; padding-left: 8px;" alt="My Videos"></a>
 
 </div>
 

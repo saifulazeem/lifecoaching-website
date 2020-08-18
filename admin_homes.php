@@ -130,7 +130,7 @@ include("connection.php");
 	<div class="topnav" id="myTopnav">
 	<a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a href="logout.php">Logout</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.php">Contact</a>
   <a href="#services">Services</a>
   <a href="#index.html" class="active">Home</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -247,7 +247,7 @@ if (isset($_POST["u_publish"]))
     echo "Your File size is to Large";
     $uploadok=0;
    }
-   if ($imagefile_type!="mp4" && $imagefile_type!="png" && $imagefile_type!="jpeg" )
+   if ($imagefile_type!="mp4" && $imagefile_type!="avi" && $imagefile_type!="mp3" )
     {
     echo "File Type not Supported only jpg png and jpeg file are allowed";
     $uploadok=0;

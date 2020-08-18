@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Contact US</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
 <style>
+
+.abs
+{
+   width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.Contact
+{
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 80%;
+  height:500px;
+  background-color:white;
+}
+
+
+
 	.topnav {
   overflow: hidden;
   background-color: #f1f1f1;
@@ -87,9 +110,9 @@
 	<div class="topnav" id="myTopnav">
 	<a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a href="login.php">Login/SignUp</a>
-  <a href="contact.php">Contact</a>
+  <a href="contact.php" class="active">Contact</a>
   <a href="#services">Services</a>
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html" >Home</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -122,9 +145,36 @@ function myFunction() {
   </div>
 
   <div class="main">
-    <h2>ABOUT</h2>
-    <p>The walk from Monterosso to Riomaggiore will take you approximately two hours, give or take an hour depending on the weather conditions and your physical shape.</p>
-    <img src="images/motivational_image.jpg" style="width:100%">
+    <h2>CONTACT US</h2>
+    <div class="Contact">
+
+    <!-- <h1 style="float: left;">Contact Us:</h1>
+      <br>
+    <br>
+    <br>
+    <br> -->
+ 
+<form method="post">
+  <label for="input Name">Your Name</label><br>
+  <input type="text" style="width: 100%;" name="c_user" placeholder="Please Enter your Name" required>
+  <br>
+    <label for="input Email">Your Email</label><br>
+  <input class="abs" style="width: 100%;" type="Email" name="c_user_mail" placeholder="Please Enter your Email Address" required>
+  <br>
+  <label for="input Subject">Subject</label><br>
+  <input type="text" style="width: 100%;" name="c_sub" placeholder="Please Enter your Subject" required>
+  <br>
+  <label for="input Message">Message</label><br>
+  <textarea class="abs" style="width: 100%; height: 180px;" type="text" name="c_message" placeholder="Type Your Message Here" required></textarea>
+  <br>
+  <center><button type="submit" name="message_sub" >Send</button></center>
+
+
+</form>
+
+</div>
+
+    
   </div>
 
   <!-- <div class="right">
@@ -142,3 +192,30 @@ function myFunction() {
 
 </body>
 </html>
+<?php
+
+
+include("connection.php");
+
+if(isset($_POST["message_sub"]))
+{
+  $sender_name=mysqli_real_escape_string($con,$_POST["c_user"]);
+  $sender_mail=mysqli_real_escape_string($con,$_POST["c_user_mail"]);
+  $sender_subject=mysqli_real_escape_string($con,$_POST["c_sub"]);
+  $sender_address=mysqli_real_escape_string($con,$_POST["c_message"]);
+
+
+  $query=$con->prepare("INSERT INTO messages(sender_name,sender_mail,mail_subject,sender_message) VALUES(?,?,?,?)");
+
+  $query->bind_param("ssss",$sender_name,$sender_mail,$sender_subject,$sender_address);
+      $query->execute();
+      $query->close();
+
+      echo "Thanks $sender_name Your message has been sent Sucessfully";
+
+
+}
+
+
+
+?>

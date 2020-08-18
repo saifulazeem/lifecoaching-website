@@ -5,6 +5,8 @@ session_start();
 if (isset($_SESSION["loged_user"]))
  {
   $val=$_SESSION["loged_user"];
+  $arr=explode("@", $val);
+  $author=$arr[0];
 }
 else
 {
@@ -107,9 +109,9 @@ if(isset($_GET["logout"]))
 	<div class="topnav" id="myTopnav">
 	<a href="index.html" style="float: left;"><img src="images/logo.png" style="width: 160px; height: 100px; "></a>
   <a href="logout.php">Logout</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.php">Contact</a>
   <a href="#services">Services</a>
-  <a href="index.html" class="active">Home</a>
+  <a href="users_home.php" class="active"><?php echo $author." Home"; ?></a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -126,13 +128,16 @@ function myFunction() {
 </script>
 
 <div style="background-color:#f1f1f1;padding:15px;">
-  <h1>Cinque Terre</h1>
+  <center><h1><?php echo "Welcome ".$author; ?></h1></center>
   <h3>Resize the browser window</h3>
 </div>
 
 <div style="overflow:auto">
   <div class="menu">
-    <div class="menuitem">Categories</div>
+    <div class="menuitem"><form method="POST" action="search_results.php">
+      <input style="height: 30px; width: 70%;  " type="text" name="search_bar" placeholder="Search Topic Here">
+      <button  name="search_btn" style="height: 35px; cursor: pointer; ">GO</button>
+    </form></div>
     <div class="menuitem">Topics</div>
     <div class="menuitem"><a href="Videos.php" style="text-decoration: none;">Videos</a></div>
     <!-- <div class="menuitem">Gallery</div> -->
